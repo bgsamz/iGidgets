@@ -2,4 +2,6 @@
     <string name="app_name">iGidgets</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_update_list">Update List</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_new_list">newList</string>
 </resources>

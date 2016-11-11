@@ -15,10 +15,6 @@ public class UpdateList extends AppCompatActivity {
         setContentView(R.layout.activity_update_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 }
