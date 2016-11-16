@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         dbHelper.close();
 
         final ListView shoppingListView = (ListView) findViewById(R.id.mainListView);
-        final ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, lists);
+        final ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, lists);
         shoppingListView.setAdapter(adapter);
 
         shoppingListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

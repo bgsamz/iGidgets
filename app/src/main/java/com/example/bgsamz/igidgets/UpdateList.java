@@ -24,7 +24,7 @@ public class UpdateList extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         final ListView shoppingListView = (ListView) findViewById(R.id.updateItemListView);
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         shoppingListView.setAdapter(adapter);
 
         onClick(adapter);

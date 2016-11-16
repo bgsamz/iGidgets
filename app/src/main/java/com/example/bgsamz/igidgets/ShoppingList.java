@@ -55,7 +55,7 @@ public class ShoppingList extends AppCompatActivity {
         dbHelper.close();
 
         final ListView shoppingListView = (ListView) findViewById(R.id.shoppingListView);
-        final ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, lists);
+        final ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, lists);
         shoppingListView.setAdapter(adapter);
     }
 }
