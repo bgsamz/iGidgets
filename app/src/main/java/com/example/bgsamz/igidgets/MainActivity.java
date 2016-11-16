@@ -1,6 +1,7 @@
 package com.example.bgsamz.igidgets;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,7 +10,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,8 +24,10 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        populateListView();
+
         onClick();
-    };
+    }
 
     public void onClick() {
         Button newListButton = (Button) findViewById(R.id.newListButton);
@@ -29,7 +35,30 @@ public class MainActivity extends AppCompatActivity {
         newListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
-                startActivity(new Intent(getApplicationContext(), newList.class));
+                startActivity(new Intent(getApplicationContext(), NewList.class));
+            }
+        });
+    }
+
+    private void populateListView() {
+        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        String[] lists = dbHelper.getLists(db);
+        db.close();
+        dbHelper.close();
+
+        final ListView shoppingListView = (ListView) findViewById(R.id.mainListView);
+        final ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, lists);
+        shoppingListView.setAdapter(adapter);
+
+        shoppingListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String item = (String) adapter.getItem(position);
+                Intent intent = new Intent(getApplicationContext(), ShoppingList.class);
+                intent.putExtra("title", item);
+                intent.putExtra("table_name", item.replace(' ', '_'));
+                startActivity(intent);
             }
         });
     }
